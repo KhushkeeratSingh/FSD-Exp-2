@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+        }
+        textarea {
+            width: 95%;
+            height: 150px;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Word Counter</h1>
+    <div class="container">
+        <label>Enter your text:</label>
+        <br><br>
+        <textarea id="text" maxlength="150" placeholder="Type here..."></textarea>
+        <div class="counter">
+            <span id="count">0</span> / 150 characters
+        </div>
+    </div>
+    <script>
+        const text = document.getElementById('text');
+        const count = document.getElementById('count');
+        text.oninput = function() {
+            let len = text.value.length;
+            count.textContent = len;
+        };
+    </script>
+</body>
+</html>

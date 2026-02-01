@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Drawing Tool</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        svg {
+            display: block;
+            width: 600px;
+            height: 400px;
+            margin: 0;
+            background: rgb(0, 0, 0);
+            border: 2px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <svg id="canvas"></svg>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var drawing = false;
+        var path;
+        canvas.addEventListener('mousedown', function(e) {
+            drawing = true;
+            path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('stroke', 'white');
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('fill', 'none');
+            path.setAttribute('d', 'M ' + e.offsetX + ' ' + e.offsetY);
+            canvas.appendChild(path);
+        });
+        canvas.addEventListener('mousemove', function(e) {
+            if (!drawing) return;
+            var d = path.getAttribute('d');
+            path.setAttribute('d', d + ' L ' + e.offsetX + ' ' + e.offsetY);
+        });
+        canvas.addEventListener('mouseup', function() {
+            drawing = false;
+        });
+    </script>
+</body>
+</html>

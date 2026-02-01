@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+        }
+        select {
+            padding: 8px;
+            font-size: 14px;
+        }
+        .product {
+            background: white;
+            padding: 15px;
+            border: 02px solid #000000;
+            margin: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Filter</h1>
+    <div class="filter">
+        <label>Category: </label>
+        <select id="cat">
+            <option value="All">All</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Footwear">Footwear</option>
+            <option value="Fitness">Fitness</option>
+        </select>
+    </div>
+    <div class="products" id="list"></div>
+    <script>
+        var products = [
+            {name: "Wireless Headphones", category: "Electronics", price: 79.99},
+            {name: "Running Shoes", category: "Footwear", price: 119.99},
+            {name: "Smart Watch", category: "Electronics", price: 249.99},
+            {name: "Yoga Mat", category: "Fitness", price: 29.99},
+            {name: "Laptop Stand", category: "Electronics", price: 49.99},
+            {name: "Water Bottle", category: "Fitness", price: 24.99},
+            {name: "Sneakers", category: "Footwear", price: 89.99},
+            {name: "Bluetooth Speaker", category: "Electronics", price: 59.99}
+        ];
+        var cat = document.getElementById('cat');
+        var list = document.getElementById('list');
+        function show() {
+            var selected = cat.value;
+            var result = [];
+            for (var i = 0; i < products.length; i++) {
+                if (selected == 'All') {
+                    result.push(products[i]);
+                } else if (products[i].category == selected) {
+                    result.push(products[i]);
+                }
+            }
+            list.innerHTML = '';
+            for (var i = 0; i < result.length; i++) {
+                list.innerHTML += '<div class="product">' +
+                    '<h3>' + result[i].name + '</h3>' +
+                    '<p>' + result[i].category + '</p>' +
+                    '<div class="price">$' + result[i].price + '</div>' +
+                '</div>';
+            }
+        }
+        cat.onchange = show;
+        show();
+    </script>
+</body>
+</html>
